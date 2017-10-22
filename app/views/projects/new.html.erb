@@ -1,0 +1,11 @@
+<h1>Projects#index</h1>
+<div>
+  <%= form_for @project do |f| %>
+  <div class="field">
+    <%= f.file_field :upload_file %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Upload" %>
+  </div>
+<% end %>
+</div>
