@@ -1,0 +1,7 @@
+<h1>Projects#show</h1>
+<h2><%= @project.name %></h2>
+<div>
+  <% @project.column.each do |c| %>
+    <div><%= c.name %></div>
+  <% end %>
+</div>

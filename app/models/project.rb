@@ -3,4 +3,6 @@ class Project
   field :name, type: String
   field :file, type: BSON::Binary
   field :file_name, type: String
+
+  has_many :column
 end
