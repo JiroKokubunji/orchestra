@@ -56,3 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # add by Project
 gem 'mongoid', '~> 6.2.0'
 gem 'bson_ext'
+gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'jquery-rails'

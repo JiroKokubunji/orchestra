@@ -1,0 +1,18 @@
+<h1>Projects#index</h1>
+
+<div class="col-lg-12">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |p| %>
+    <tr>
+      <td>
+        <%= link_to p.name, {:controller => :projects, :action => :show, :id => p.id } %>
+      </td>
+    </tr>
+    <% end %>
+</div>
