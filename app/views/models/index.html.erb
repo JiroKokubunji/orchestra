@@ -1,4 +1,39 @@
 <h1>Models#index</h1>
+<div>
+  <div id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Algorithms
+        </a>
+      </h5>
+    </div>
+    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+        <table class="table">
+        <thead>
+          <tr>
+            <th>type</th>
+            <th>add</th>
+          </tr>
+        </thead>
+        <% @algorithms.each do |a| %>
+        <tr>
+          <td>
+            <%= a.category %>
+          </td>
+          <td>
+            <button type="button" data-toggle="modal" data-target="#myModal">Add</button>
+          </td>
+        </tr>
+        <% end %>
+        </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="col-lg-12">
   <table class="table">
   <thead>
@@ -14,4 +49,23 @@
       </td>
     </tr>
     <% end %>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">parameters</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Initialize parameters</p>
+        <textarea></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
