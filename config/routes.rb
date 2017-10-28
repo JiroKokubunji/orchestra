@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get 'analyses/:project_id/columns', to: 'analyses#columns'
+
   resources :projects
   resources :models
   resources :algorithms

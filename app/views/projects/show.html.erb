@@ -1,6 +1,7 @@
 <h1>Projects#show</h1>
 <h2><%= @project.name %></h2>
 <div><%= link_to 'models', {controller: :models, action: :index} %></div>
+<div><%= link_to 'analyze columns', {controller: :analyses, action: :columns, :project_id => @project.id } %></div>
 <div class="col-lg-12">
   <table class="table">
   <thead>

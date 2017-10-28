@@ -10,7 +10,7 @@
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="#">Orchestra</a>
+      <%= link_to 'Orchestra', :root, class: "navbar-brand" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -18,7 +18,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">新規作成<span class="sr-only">(current)</span></a>
+            <%= link_to 'new project', {controller: :projects, action: :new}, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'Projects', {controller: :projects, action: :index},  class: "nav-link" %>
