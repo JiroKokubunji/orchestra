@@ -1,0 +1,17 @@
+<h1>Models#index</h1>
+<div class="col-lg-12">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @models.each do |m| %>
+    <tr>
+      <td>
+        <%= m.name %>
+      </td>
+    </tr>
+    <% end %>
+</div>
