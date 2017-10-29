@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'analyses/:project_id/columns', to: 'analyses#columns'
+  put 'projects/:project_id', to: 'projects#update'
 
   resources :projects
   resources :models

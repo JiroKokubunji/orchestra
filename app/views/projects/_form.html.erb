@@ -1,0 +1,21 @@
+<%= form_with(model: project, local: true) do |form| %>
+  <% if project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="moduel_name">name</label>
+    <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="name">
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
