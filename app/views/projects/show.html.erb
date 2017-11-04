@@ -1,17 +1,43 @@
-<h1>Projects#show</h1>
 <h2><%= @project.name %></h2>
 <div><%= link_to 'models', {controller: :models, action: :index} %></div>
 <div><%= link_to 'analyze columns', {controller: :analyses, action: :columns, :project_id => @project.id } %></div>
 <div class="col-lg-12">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      dataset
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <% @project.preprocessed_datum.each do |p| %>
+         <%= link_to p.name, {controller: 'projects', action: 'show', id: @project._id, preprocessed_datum_id: p._id}, class: "dropdown-item" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="col-lg-12">
   <table class="table">
   <thead>
     <tr>
+      <th></th>
+      <th>target</th>
+      <th>active</th>
       <th>name</th>
       <th>type</th>
     </tr>
   </thead>
   <tbody>
-    <%= @project.preprocessed_data._id %>
+    <% @preprocessed_datum.column.each do |c| %>
     <tr>
+      <td>
+        <%= form_tag({controller: 'columns', action: "update_target", id: c._id}, method: 'put') do |cc| %>
+          <%= submit_tag 'target' %>
+        <% end %>
+      </td>
+      <td><%= c.target %></td>
+      <td><%= c.active %></td>
+      <td><%= c.name %></td>
+      <td>数値</td>
     </tr>
+    <% end %>
+  </tbody>
+  </table>
 </div>

@@ -3,6 +3,6 @@ class Project
   field :name, type: String
   field :file_name, type: String
 
-  has_one :preprocessed_datum
+  has_many :preprocessed_datum
 
 end

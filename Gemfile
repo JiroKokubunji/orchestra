@@ -58,3 +58,4 @@ gem 'mongoid', '~> 6.2.0'
 gem 'bson_ext'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'jquery-rails'
+gem 'pry-byebug', group: :development

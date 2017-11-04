@@ -4,9 +4,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    # params.require(:project).permit(:id)
-    id = params[:id]
-    @project = Project.find(id)
+    @project = Project.find(params[:id])
+    preprocessed_datum_id = params[:preprocessed_datum_id] || @project.preprocessed_datum[0]._id
+    @preprocessed_datum = PreprocessedDatum.find(preprocessed_datum_id)
   end
 
   def edit
@@ -38,7 +38,8 @@ class ProjectsController < ApplicationController
       u.name = name
       u.file_name = file_name
     end
-    ppd = project.build_preprocessed_datum({:data => params[:project][:upload_file].read})
+    ppd = project.preprocessed_datum.build({:name => name,
+                                            :data => params[:project][:upload_file].read})
     if ppd.save
         redirect_to action: "index"
     end
