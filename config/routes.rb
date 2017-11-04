@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   put 'projects/:project_id', to: 'projects#update'
 
   resources :projects
+  resources :preprocessed_datum
   resources :models
   resources :algorithms
 

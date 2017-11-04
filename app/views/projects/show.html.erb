@@ -11,10 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @project.column.each do |c| %>
+    <%= @project.preprocessed_data._id %>
     <tr>
-      <td> <%= c.name %> </td>
-      <td> <%= c.type %> </td>
     </tr>
-    <% end %>
 </div>

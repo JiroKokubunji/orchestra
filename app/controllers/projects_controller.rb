@@ -21,21 +21,26 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    params.require(:project).permit(:id, :name)
-    project = Project.find({:id => params[:project][:id]})
+    id = params[:id]
+    params.require(:project).permit(:name)
+    project = Project.find({:id => id})
+    project[:name] = params[:project][:name]
     if project.save
-      redirect_to action: index
+      redirect_to action: "index"
     end
   end
 
   def create
     params.require(:project).permit(:upload_file)
     name = 'project name'
-    project = {}
-    project[:name] = name
-    project[:file_name] = params[:project][:upload_file].original_filename
-    if project.save
-      redirect_to action: index
+    file_name = params[:project][:upload_file].original_filename
+    project = Project.new do |u|
+      u.name = name
+      u.file_name = file_name
+    end
+    ppd = project.build_preprocessed_datum({:data => params[:project][:upload_file].read})
+    if ppd.save
+        redirect_to action: "index"
     end
   end
 end

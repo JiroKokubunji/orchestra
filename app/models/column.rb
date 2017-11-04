@@ -3,5 +3,5 @@ class Column
   field :name, type: String
   field :type, type: String
 
-  belongs_to :project
+  belongs_to :preprocessed_datum
 end
