@@ -7,4 +7,9 @@ $(function () {
     var url = "projects/" + project_id + "/edit";
     $("#project_edit_modal").find('.modal-body').load(url);
   });
+  $("#go_predict").click(function () {
+    var preprocessed_datum_id = $(this).data("preprocessed_datum_id");
+    var url = "/algorithms/";
+    $("#go_predict_modal").find('.modal-body').load(url);
+  });
 });

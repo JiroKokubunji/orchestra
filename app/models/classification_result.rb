@@ -8,5 +8,5 @@ class ClassificationResult
   field :confusion_matrix, type: String
   field :feature_importance, type: String
 
-  belongs_to :model
+  belongs_to :predction_task
 end

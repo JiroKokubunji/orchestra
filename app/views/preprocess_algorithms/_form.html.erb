@@ -1,0 +1,17 @@
+<%= form_with(model: preprocess_algorithm, local: true) do |form| %>
+  <% if preprocess_algorithm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(preprocess_algorithm.errors.count, "error") %> prohibited this preprocess_algorithm from being saved:</h2>
+
+      <ul>
+      <% preprocess_algorithm.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

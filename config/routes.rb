@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :preprocess_algorithms
+  resources :preprocesses
   resources :projects
   resources :preprocessed_datum
   resources :column

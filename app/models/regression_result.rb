@@ -7,5 +7,5 @@ class RegressionResult
   field :r_square, type: String
   field :feature_importance, type: String
 
-  belongs_to :model
+  belongs_to :predicition_task
 end
