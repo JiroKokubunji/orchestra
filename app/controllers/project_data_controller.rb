@@ -69,6 +69,6 @@ class ProjectDataController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_datum_params
-      params.fetch(:project_datum, {})
+      params[:project_datum].permit(:project_data)
     end
 end

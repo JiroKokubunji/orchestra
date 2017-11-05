@@ -8,5 +8,5 @@ class Project
   field :data, type: String
 
   has_many :project_datum
-  belongs_to :user
+  # belongs_to :user
 end
