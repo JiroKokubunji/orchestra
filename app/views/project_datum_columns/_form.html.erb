@@ -1,0 +1,17 @@
+<%= form_with(model: project_datum_column, local: true) do |form| %>
+  <% if project_datum_column.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_datum_column.errors.count, "error") %> prohibited this project_datum_column from being saved:</h2>
+
+      <ul>
+      <% project_datum_column.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

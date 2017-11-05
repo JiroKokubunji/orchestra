@@ -1,0 +1,17 @@
+<%= form_with(model: machine_learning_algorithm, local: true) do |form| %>
+  <% if machine_learning_algorithm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(machine_learning_algorithm.errors.count, "error") %> prohibited this machine_learning_algorithm from being saved:</h2>
+
+      <ul>
+      <% machine_learning_algorithm.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

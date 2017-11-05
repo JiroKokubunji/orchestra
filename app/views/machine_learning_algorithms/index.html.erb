@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Machine Learning Algorithms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @machine_learning_algorithms.each do |machine_learning_algorithm| %>
+      <tr>
+        <td><%= link_to 'Show', machine_learning_algorithm %></td>
+        <td><%= link_to 'Edit', edit_machine_learning_algorithm_path(machine_learning_algorithm) %></td>
+        <td><%= link_to 'Destroy', machine_learning_algorithm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Machine Learning Algorithm', new_machine_learning_algorithm_path %>
