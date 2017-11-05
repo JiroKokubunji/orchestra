@@ -1,0 +1,5 @@
+category,module_name,class_name
+preprocess,sklearn.preprocessing,StandardScaler
+preprocess,sklearn.preprocessing,MinMaxScaler
+preprocess,sklearn.preprocessing,MaxAbsScaler
+decomposition,sklearn.decomposition,PCA

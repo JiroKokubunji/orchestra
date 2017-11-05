@@ -1,0 +1,4 @@
+category,module_name,class_name
+classification,sklearn.svm,SVC
+classification,sklearn.ensemble,RandomForestClassifier
+classification,sklearn.linear_model,SGDClassifier
