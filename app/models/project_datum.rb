@@ -7,5 +7,7 @@ class ProjectDatum
   field :data, type: String
 
   belongs_to :project
-  has_many :project_datum_column, :machine_learning_algorithm, :preprocess_algorithms
+  has_many :project_datum_column
+  has_many :machine_learning_algorithm
+  has_many :preprocess_algorithms
 end
