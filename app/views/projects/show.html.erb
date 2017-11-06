@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<div>
+  <p>name:<%= @project.name %></p>
+  <%= link_to 'Show data', project_project_data_path(@project) %> |
+  <%= link_to 'Add data', new_project_project_datum_path(@project) %> |
+</div>
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

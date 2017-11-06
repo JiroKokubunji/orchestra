@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   resources :machine_learning_algorithms
   resources :preprocess_algorithms
-  resources :projects do
-    resources :project_datum do
-      resources :project_datum_column
+  resources :projects, shallow: true do
+    resources :project_data, shallow: true do
+      resources :project_datum_columns
     end
   end
 

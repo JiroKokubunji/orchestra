@@ -4,7 +4,7 @@ class ProjectDataController < ApplicationController
   # GET /project_data
   # GET /project_data.json
   def index
-    @project_data = ProjectDatum.all
+    @project_data = ProjectDatum.where(project_id: params[:project_id])
   end
 
   # GET /project_data/1
@@ -14,7 +14,8 @@ class ProjectDataController < ApplicationController
 
   # GET /project_data/new
   def new
-    @project_datum = ProjectDatum.new
+    @project = Project.find(params[:project_id])
+    @project_datum = @project.project_datum.build
   end
 
   # GET /project_data/1/edit
@@ -24,7 +25,10 @@ class ProjectDataController < ApplicationController
   # POST /project_data
   # POST /project_data.json
   def create
-    @project_datum = ProjectDatum.new(project_datum_params)
+    new_data = {}
+    new_data['project_id'] = params[:project_id]
+    new_data['data'] = params[:project_datum][:data].read
+    @project_datum = ProjectDatum.new(new_data)
 
     respond_to do |format|
       if @project_datum.save
@@ -69,6 +73,6 @@ class ProjectDataController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_datum_params
-      params[:project_datum].permit(:project_data)
+      params.fetch(:project_datum).permit(:id, :project_id, :data)
     end
 end

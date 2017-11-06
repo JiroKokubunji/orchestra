@@ -1,4 +1,4 @@
-<%= form_with(model: project_datum, local: true) do |form| %>
+<%= form_with(model: [project_datum.project, project_datum], local: true) do |form| %>
   <% if project_datum.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(project_datum.errors.count, "error") %> prohibited this project_datum from being saved:</h2>
@@ -12,7 +12,7 @@
   <% end %>
 
   <div>
-    <%= form.file_field_tag 'project_data' %>
+    <%= form.file_field 'data' %>
   </div>
 
   <div class="actions">
