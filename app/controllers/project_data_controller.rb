@@ -27,8 +27,14 @@ class ProjectDataController < ApplicationController
   def create
     new_data = {}
     new_data['project_id'] = params[:project_id]
+    new_data['name'] = "project data"
     new_data['data'] = params[:project_datum][:data].read
     @project_datum = ProjectDatum.new(new_data)
+    lines = new_data['data'].split("\r\n")
+    header = lines[0].split(',')
+    header.each do |h|
+      @project_datum.project_datum_columns.build(name: h, type: 'object')
+    end
 
     respond_to do |format|
       if @project_datum.save

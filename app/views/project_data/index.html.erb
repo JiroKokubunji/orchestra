@@ -11,6 +11,9 @@
 
   <tbody>
     <% @project_data.each do |project_datum| %>
+      <th colspan="3">
+        <%= project_datum.name %>
+      </th>
       <tr>
         <td><%= link_to 'Show', project_datum %></td>
         <td><%= link_to 'Edit', edit_project_datum_path(project_datum) %></td>

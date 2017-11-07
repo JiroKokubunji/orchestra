@@ -5,8 +5,8 @@ class ProjectDatumColumn
 
   field :name, type: String
   field :type, type: String
-  field :active , type: Boolean
-  field :target , type: Boolean
+  field :active, type: Boolean, default: true
+  field :target, type: Boolean, default: false
 
   belongs_to :project_datum
 end
