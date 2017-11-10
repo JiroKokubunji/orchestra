@@ -69,6 +69,6 @@ class ProjectDatumColumnsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_datum_column_params
-      params.fetch(:project_datum_column, {})
+      params.fetch(:project_datum_column).permit(:id)
     end
 end

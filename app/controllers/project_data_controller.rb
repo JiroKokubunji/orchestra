@@ -22,6 +22,17 @@ class ProjectDataController < ApplicationController
   def edit
   end
 
+  def process_columns
+    req = ProcessColumnsRequest.new
+    req.project_data_id = params[:project_datum][:id]
+    req.target_columns = params[:project_datum_columns][:id]
+    req.task = params[:task]
+    req.save
+    MongodbMsgq.requestSync(req)
+    @project_datum = ProjectDatum.find(params[:project_datum][:id])
+    redirect_to @project_datum, notice: 'data columns were successfully updated.'
+  end
+
   # POST /project_data
   # POST /project_data.json
   def create
@@ -80,5 +91,7 @@ class ProjectDataController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_datum_params
       params.fetch(:project_datum).permit(:id, :project_id, :data)
+      params.fetch(:process_datum_columns).permit(:id)
+      params.fetch(:process_columns_request).permit(:task)
     end
 end

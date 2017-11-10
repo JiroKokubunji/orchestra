@@ -1,0 +1,20 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>-</th>
+        <th>category</th>
+        <th>class name</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= @preprocess_algorithms.each do |al| %>
+      <tr>
+        <td><%= check_box %></td>
+        <td><%= al.cateogy %></td>
+        <td><%= al.class_name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

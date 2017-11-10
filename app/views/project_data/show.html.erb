@@ -1,10 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <div><%= @project_datum.name %></div>
+<%= form_with model: @project_datum, url: process_columns_path, method: 'post' do |form| %>
+<%= form.hidden_field :id %>
 <div>
   <table>
     <thead>
       <tr>
+        <th>-</th>
         <th>name</th>
         <th>type</th>
         <th>active</th>
@@ -12,8 +15,9 @@
       </tr>
     </thead>
     <tbody>
-    <%= @project_datum.project_datum_columns.each do |c| %>
+    <% @project_datum.project_datum_columns.each do |c| %>
       <tr>
+        <td><%= check_box_tag "project_datum_columns[id][]", c._id %></td>
         <td><%= c.name %></td>
         <td><%= c.type %></td>
         <td><%= c.active %></td>
@@ -23,5 +27,11 @@
     </tbody>
   </table>
 </div>
+
+<div class="actions">
+  <%= hidden_field_tag "process_columns_request[task]", "columns_type" %>
+  <%= submit_tag 'analyze' %>
+</div>
+<% end %>
 
 <%= link_to 'Edit', edit_project_datum_path(@project_datum) %>
