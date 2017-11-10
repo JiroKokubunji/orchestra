@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Select Preprocess Algorithms</h1>
+
+<%= form_with url: register_preprocess_algorithms_path do |form| %>
+<% @columns.each do |c| %>
+  <%= hidden_field_tag 'project_datum_columns[id][]', c %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @preprocess_algorithms.each do |preprocess_algorithm| %>
+      <tr>
+        <td><%= check_box_tag "preprocess_algorithms[id][]", preprocess_algorithm.id %></td>
+        <td><%= preprocess_algorithm.module_name %></td>
+        <td><%= preprocess_algorithm.class_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= form.submit "register" %>
+<% end %>

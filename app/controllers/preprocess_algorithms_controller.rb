@@ -1,6 +1,26 @@
 class PreprocessAlgorithmsController < ApplicationController
   before_action :set_preprocess_algorithm, only: [:show, :edit, :update, :destroy]
 
+  def select_preprocess_algorithms
+    @columns = params[:project_datum_columns][:id]
+    @preprocess_algorithms = PreprocessAlgorithm.all
+  end
+
+  def register_preprocess_algorithms
+    preprocess_algorithm_params
+    project_datum_columns = ProjectDatumColumn.find(params[:project_datum_columns][:id][0])
+    req = ProcessColumnsRequest.new
+    req.project_data_id = project_datum_columns.project_datum.id
+    req.target_columns = params[:project_datum_columns][:id]
+    req.task = ""
+    req.preprocess_algorithms_id = params[:preprocess_algorithms][:id]
+    req.save
+    MongodbMsgq.requestSync(req)
+    @project_datum = ProjectDatum.find(project_datum_columns.project_datum.id)
+    redirect_to @project_datum, notice: 'data columns were successfully updated.'
+  end
+
+
   # GET /preprocess_algorithms
   # GET /preprocess_algorithms.json
   def index
@@ -69,6 +89,7 @@ class PreprocessAlgorithmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def preprocess_algorithm_params
-      params.fetch(:preprocess_algorithm, {})
+      params.fetch(:project_datum_columns).permit(:id)
+      params.fetch(:preprocess_algorithms).permit(:id)
     end
 end

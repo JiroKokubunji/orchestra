@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   post '/project_data/process_columns',
         to: 'project_data#process_columns',
         as: 'process_columns'
+  get '/preprocess_algorithms/select_preprocess_algorithms',
+        to: 'preprocess_algorithms#select_preprocess_algorithms',
+        as: 'select_preprocess_algorithms'
+  post '/preprocess_algorithms/register_preprocess_algorithms',
+        to: 'preprocess_algorithms#register_preprocess_algorithms',
+        as: 'register_preprocess_algorithms'
 
 
   resources :machine_learning_algorithms
