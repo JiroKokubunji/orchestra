@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
-  <div class="col col-lg-4">
+  <div class="col col-lg-3">
     <h1><%= @project_datum.name %></h1>
+  </div>
+  <div class="col col-lg-2">
+    <%= link_to 'rename', '#', {'data-toggle' => "modal", 'data-target' => "#modal-window"} %>
   </div>
 </div>
 <div class="row">
@@ -35,7 +38,24 @@
 
 <div class="actions">
   <%= hidden_field_tag "process_columns_request[task]", "columns_type" %>
-  <%= submit_tag 'analyze columns' %>
-  <%= button_tag 'preprocessing', :id => 'preprocessing' %>
+  <%= submit_tag 'analyze columns', :class => 'btn btn-primary' %>
+  <%= button_tag 'preprocessing', :id => 'preprocessing', :class => 'btn btn-primary' %>
 </div>
 <% end %>
+
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="myModalLabel">Edit</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <%= render :partial => 'modal_edit', locals: {:project_datum => @project_datum} %>
+      </div>
+      <div class="modal-footer">
+         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

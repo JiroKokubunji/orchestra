@@ -62,7 +62,7 @@ class ProjectDataController < ApplicationController
   # PATCH/PUT /project_data/1.json
   def update
     respond_to do |format|
-      if @project_datum.update(project_datum_params)
+      if @project_datum.update({:name => params[:project_datum][:name]})
         format.html { redirect_to @project_datum, notice: 'Project datum was successfully updated.' }
         format.json { render :show, status: :ok, location: @project_datum }
       else
@@ -90,8 +90,8 @@ class ProjectDataController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_datum_params
-      params.fetch(:project_datum).permit(:id, :project_id, :data)
-      params.fetch(:process_datum_columns).permit(:id)
-      params.fetch(:process_columns_request).permit(:task)
+      params.require(:project_datum).permit(:id, :project_id, :data, :name)
+      params.require(:process_datum_columns).permit(:id)
+      params.require(:process_columns_request).permit(:task)
     end
 end

@@ -4,4 +4,6 @@ class PreprocessAlgorithm
   field :module_name, type: String
   field :class_name, type: String
 
+  belongs_to :project_datum
+
 end

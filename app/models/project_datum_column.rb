@@ -8,5 +8,5 @@ class ProjectDatumColumn
   field :active, type: Boolean, default: true
   field :target, type: Boolean, default: false
 
-  belongs_to :project_datum
+  belongs_to :project_datum, optional: true
 end
