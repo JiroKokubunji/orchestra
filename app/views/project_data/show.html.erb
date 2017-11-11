@@ -27,7 +27,10 @@
           <td><%= check_box_tag "project_datum_columns[id][]", c._id %></td>
           <td><%= c.name %></td>
           <td><%= c.type %></td>
-          <td><%= c.active %></td>
+          <td>
+            <%= c.active %>
+            <%= button_tag 'toggle', "data-project-datum-columns-id" => c._id, :class => "column_active_toggle" %>
+          </td>
           <td><%= c.target %></td>
         </tr>
       <% end %>

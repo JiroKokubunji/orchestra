@@ -8,4 +8,17 @@ $(function () {
     selected = 'project_datum_columns[id][]=' + selected.join('&project_datum_columns[id][]=');
     window.location.href = '/preprocess_algorithms/select_preprocess_algorithms?' + selected;
   });
+
+  $(".column_active_toggle").on('click', function (e) {
+    e.preventDefault();
+    $.post({
+      url: '/project_datum_columns/toggle_active',
+      data: "project_datum_columns[id]=" + $(e.target).data('project-datum-columns-id'),
+      headers: {
+        'X-Transaction': 'POST Example',
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+    });
+    return false;
+  });
 });

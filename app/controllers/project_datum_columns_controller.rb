@@ -61,6 +61,15 @@ class ProjectDatumColumnsController < ApplicationController
     end
   end
 
+  def toggle_active
+    params.fetch(:project_datum_columns).permit(:id)
+    @project_datum_column = ProjectDatumColumn.find(params[:project_datum_columns][:id])
+    @project_datum_column.active = !@project_datum_column.active
+    @project_datum_column.save
+
+    redirect_to controller: 'project_data', action: 'show', id: @project_datum_column.project_datum.id
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project_datum_column
