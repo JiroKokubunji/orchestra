@@ -7,18 +7,26 @@ $(function () {
     var selected = $.map($("input:checkbox:checked"), function (x, i) {return x.value});
     selected = 'project_datum_columns[id][]=' + selected.join('&project_datum_columns[id][]=');
     window.location.href = '/preprocess_algorithms/select_preprocess_algorithms?' + selected;
-  });
-
-  $(".column_active_toggle").on('click', function (e) {
-    e.preventDefault();
-    $.post({
-      url: '/project_datum_columns/toggle_active',
-      data: "project_datum_columns[id]=" + $(e.target).data('project-datum-columns-id'),
-      headers: {
-        'X-Transaction': 'POST Example',
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-      },
-    });
     return false;
   });
+
+  var f = function () {
+      $(".column_active_toggle").on('click', function (e) {
+      $.post({
+        url: '/project_datum_columns/toggle_active',
+        data: "project_datum_columns[id]=" + $(e.target).data('project-datum-columns-id'),
+        headers: {
+          'X-Transaction': 'POST Example',
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+      });
+      e.preventDefault();
+      return false;
+    });
+  };
+  $(document).on('turbolinks:load', function () {
+    // when turbolinks as well
+    f();
+  });
+  f();
 });
