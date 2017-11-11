@@ -1,0 +1,16 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// just project new page
+html, body, .container {height: 100%;}
+.new_project_file_upload_box {
+  line-height: 300px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: solid 3px #a0a0a0;
+  background-color: #f0f0f0;
+}
+.new_project_form {
+  display: none;
+}

@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    # show also project data
+    @project_data = ProjectDatum.where(project_id: params[:id])
   end
 
   # GET /projects/new

@@ -1,10 +1,32 @@
 <p id="notice"><%= notice %></p>
-
-<div>
-  <p>name:<%= @project.name %></p>
-  <%= link_to 'Show data', project_project_data_path(@project) %> |
-  <%= link_to 'Add data', new_project_project_datum_path(@project) %> |
+<div class="row">
+  <div class="col col-lg-3">
+    <h1><%= @project.name %></h1>
+  </div>
+  <div class="col col-lg-3">
+    <%= link_to 'Add data', new_project_project_datum_path(@project) %>
+  </div>
 </div>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<div class="row">
+  <div class="col col-lg-12">
+    <h2>Project Data List</h2>
+  </div>
+  <div class="col col-lg-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @project_data.each do |project_datum| %>
+        <tr class="js-project-datum-row" data-project-datum-id="<%= project_datum.id %>" >
+          <td> <%= project_datum.name %> </td>
+          <td> <%= project_datum.created_at %> </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

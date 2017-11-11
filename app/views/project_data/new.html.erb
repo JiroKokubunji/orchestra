@@ -1,5 +1,14 @@
-<h1>New Project Datum</h1>
+<div id="new_project_file_upload_box" class="new_project_file_upload_box">
 
-<%= render 'form', project_datum: @project_datum %>
+  <div>
+    Drag n Drop here for a new project.
+  </div>
 
-<%= link_to 'Back', project_project_data_path %>
+</div>
+
+<div class="new_project_form">
+<%= form_with(model: @project, local: true) do |form| %>
+<%= form.file_field :upload_file, :id => 'upload_file' %>
+<%= form.submit "Upload" %>
+<% end %>
+</div>
