@@ -12,12 +12,12 @@ class PreprocessAlgorithmsController < ApplicationController
     req = ProcessColumnsRequest.new
     req.project_data_id = project_datum_columns.project_datum.id
     req.target_columns = params[:project_datum_columns][:id]
-    req.task = ""
+    req.task = "preprocessing"
     req.preprocess_algorithms_id = params[:preprocess_algorithms][:id]
     req.save
     MongodbMsgq.requestSync(req)
     @project_datum = ProjectDatum.find(project_datum_columns.project_datum.id)
-    redirect_to @project_datum, notice: 'data columns were successfully updated.'
+    redirect_to @project_datum, notice: 'Preprocess task was successfully registered.'
   end
 
 
