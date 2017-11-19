@@ -14,6 +14,9 @@ Rails.application.routes.draw do
         as: 'register_preprocess_algorithms'
   post '/project_datum_columns/toggle_active',
         to: 'project_datum_columns#toggle_active'
+  post '/project_datum_columns/set_target',
+        to: 'project_datum_columns#set_target'
+
 
   resources :machine_learning_algorithms
   resources :preprocess_algorithms

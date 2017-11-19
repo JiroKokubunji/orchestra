@@ -31,7 +31,10 @@
             <%= c.active %>
             <%= button_tag 'toggle', "data-project-datum-columns-id" => c._id, :class => "column_active_toggle" %>
           </td>
-          <td><%= c.target %></td>
+          <td>
+            <%= c.target %>
+            <%= button_tag 'target', "data-project-datum-columns-id" => c._id, :class => "column_target_toggle" %>
+          </td>
         </tr>
       <% end %>
       </tbody>

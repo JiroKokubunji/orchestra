@@ -10,7 +10,7 @@ $(function () {
     return false;
   });
 
-  var f = function () {
+  var active_toggle = function () {
       $(".column_active_toggle").on('click', function (e) {
       $.post({
         url: '/project_datum_columns/toggle_active',
@@ -24,9 +24,26 @@ $(function () {
       return false;
     });
   };
+
+  var set_target = function () {
+      $(".column_target_toggle").on('click', function (e) {
+      $.post({
+        url: '/project_datum_columns/set_target',
+        data: "project_datum_columns[id]=" + $(e.target).data('project-datum-columns-id'),
+        headers: {
+          'X-Transaction': 'POST Example',
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+      });
+      e.preventDefault();
+      return false;
+    });
+  };
   $(document).on('turbolinks:load', function () {
     // when turbolinks as well
-    f();
+    set_target()
+    active_toggle();
   });
-  f();
+  set_target()
+  active_toggle();
 });
