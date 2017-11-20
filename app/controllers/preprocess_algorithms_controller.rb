@@ -7,7 +7,8 @@ class PreprocessAlgorithmsController < ApplicationController
   end
 
   def register_preprocess_algorithms
-    preprocess_algorithm_params
+    params.fetch(:project_datum_columns).permit(:id)
+    params.fetch(:preprocess_algorithms).permit(:id)
     project_datum_columns = ProjectDatumColumn.find(params[:project_datum_columns][:id][0])
     req = ProcessColumnsRequest.new
     req.project_data_id = project_datum_columns.project_datum.id
@@ -62,7 +63,7 @@ class PreprocessAlgorithmsController < ApplicationController
   def update
     respond_to do |format|
       if @preprocess_algorithm.update(preprocess_algorithm_params)
-        format.html { redirect_to @preprocess_algorithm, notice: 'Preprocess algorithm was successfully updated.' }
+        format.html { redirect_to preprocess_algorithms_url, notice: 'Preprocess algorithm was successfully updated.' }
         format.json { render :show, status: :ok, location: @preprocess_algorithm }
       else
         format.html { render :edit }
@@ -89,7 +90,6 @@ class PreprocessAlgorithmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def preprocess_algorithm_params
-      params.fetch(:project_datum_columns).permit(:id)
-      params.fetch(:preprocess_algorithms).permit(:id)
+      params.fetch(:preprocess_algorithm).permit(:id, :category, :module_name, :class_name)
     end
 end

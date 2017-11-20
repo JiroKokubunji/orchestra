@@ -11,7 +11,22 @@
     </div>
   <% end %>
 
+  <div class="form-group">
+    <div>
+      <%= form.label 'category' %>
+      <%= form.text_field 'category', class: 'form-control' %>
+    </div>
+    <div>
+      <%= form.label 'module_name' %>
+      <%= form.text_field 'module_name', class: 'form-control' %>
+    </div>
+    <div>
+      <%= form.label 'class_name' %>
+      <%= form.text_field 'class_name', class: 'form-control' %>
+    </div>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'update' %>
   </div>
 <% end %>
