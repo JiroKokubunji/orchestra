@@ -24,7 +24,7 @@ class ProjectDataController < ApplicationController
 
   def process_columns
     req = ProcessColumnsRequest.new
-    req.project_data_id = params[:project_datum][:id]
+    req.project_datum_id = params[:project_datum][:id]
     req.target_columns = params[:project_datum_columns][:id]
     req.task = params[:task]
     req.save

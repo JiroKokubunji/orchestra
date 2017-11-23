@@ -1,4 +1,4 @@
-class ClassificationResult
+class ClassificationTrainingResult
   include Mongoid::Document
 
   field :accuracy, type: String
@@ -8,5 +8,5 @@ class ClassificationResult
   field :confusion_matrix, type: String
   field :feature_importance, type: String
 
-  belongs_to :predction_task
+  belongs_to :training_request
 end

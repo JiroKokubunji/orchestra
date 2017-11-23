@@ -11,7 +11,7 @@ class PreprocessAlgorithmsController < ApplicationController
     params.fetch(:preprocess_algorithms).permit(:id)
     project_datum_columns = ProjectDatumColumn.find(params[:project_datum_columns][:id][0])
     req = ProcessColumnsRequest.new
-    req.project_data_id = project_datum_columns.project_datum.id
+    req.project_datum_id = project_datum_columns.project_datum.id
     req.target_columns = params[:project_datum_columns][:id]
     pa = PreprocessAlgorithm.find(params[:preprocess_algorithms][:id])
     req.task = pa.class_name

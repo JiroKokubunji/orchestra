@@ -1,0 +1,17 @@
+<%= form_with(model: classification_training_result, local: true) do |form| %>
+  <% if classification_training_result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(classification_training_result.errors.count, "error") %> prohibited this classification_training_result from being saved:</h2>
+
+      <ul>
+      <% classification_training_result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

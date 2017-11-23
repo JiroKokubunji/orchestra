@@ -24,17 +24,23 @@
       </thead>
       <tbody>
       <% @project_datum.project_datum_columns.each do |c| %>
-        <tr class="<%= 'deactive_column' if !c.active %>">
+        <tr class="<%= 'deactive_column' if !c.active %>
+                  <%= 'target_column' if c.target %>
+                  ">
           <td><%= check_box_tag "project_datum_columns[id][]", c._id %></td>
           <td><%= c.name %></td>
           <td><%= c.type %></td>
           <td>
-            <%= c.active %>
-            <%= button_tag 'toggle', "data-project-datum-columns-id" => c._id, :class => "column_active_toggle" %>
+            <%= button_tag c.active ? "deactive" : "actvie",
+                           "data-project-datum-columns-id" => c._id,
+                           :class => "column_active_toggle" %>
           </td>
           <td>
-            <%= c.target %>
-            <%= button_tag 'target', "data-project-datum-columns-id" => c._id, :class => "column_target_toggle" %>
+            <% if !c.target and c.active%>
+              <%= button_tag "target",
+                              "data-project-datum-columns-id" => c._id,
+                              :class => "column_target_toggle" %>
+            <% end %>
           </td>
           <td>
             <%= c.created_at %>
@@ -52,6 +58,11 @@
   <%= button_tag 'preprocessing', :id => 'preprocessing', :class => 'btn btn-primary' %>
 </div>
 <% end %>
+<%= link_to 'training',
+              select_ml_algorithms_path(project_datum_id:  @project_datum.id),
+              :id => 'training',
+              :class => 'btn btn-danger',
+              method: 'get' %>
 
 <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

@@ -21,6 +21,26 @@ class MachineLearningAlgorithmsController < ApplicationController
   def edit
   end
 
+  def select_ml_algorithms
+    @project_datum = ProjectDatum.find(params['project_datum_id'])
+    @ml_algorithms = MachineLearningAlgorithm.all
+  end
+
+  def training
+    params.fetch(:ml_algorithms).permit(:id)
+    @project_datum = ProjectDatum.find(params['project_datum_id'])
+    params[:ml_algorithms][:id].each do |ml_id|
+      req = TrainingRequest.new
+      req.project_datum_id = params[:project_datum_id]
+      req.machine_learning_algorithm_id = ml_id
+      req.task = "training"
+      req.save
+      MongodbMsgq.request(req)
+    end
+    redirect_to @project_datum, notice: 'training started successfully.'
+  end
+
+
   # POST /machine_learning_algorithms
   # POST /machine_learning_algorithms.json
   def create

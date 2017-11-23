@@ -1,6 +1,12 @@
 class MongodbMsgq < ApplicationMsgq
 
   def self.request(payload)
+    class_name = payload.class.name.demodulize
+    if class_name == 'TrainingRequest'
+      q = TrainingRequestQueue.new
+      q.training_request_id = payload.id
+      q.save
+    end
   end
 
   def self.requestSync(payload)

@@ -8,6 +8,7 @@ class ProjectDatum
 
   belongs_to :project
   has_many :project_datum_columns
-  has_many :machine_learning_algorithm
+  has_many :machine_learning_algorithms
   has_many :preprocess_algorithms
+  has_many :training_requests
 end
