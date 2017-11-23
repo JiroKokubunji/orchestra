@@ -12,5 +12,9 @@ html, body, .container {height: 100%;}
   background-color: #f0f0f0;
 }
 .new_project_form {
-  display: none;
+  //display: none;
+}
+
+.deactive_column {
+  background-color: #a0a0a0;
 }

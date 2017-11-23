@@ -16,6 +16,7 @@ $(function () {
     // only support one file
     $("#upload_file")[0].files[0] = e.originalEvent.dataTransfer.files[0];
     $("form").submit();
+    return false;
   });
   // show
   $(".js-project-datum-row").on('click', function (e) {

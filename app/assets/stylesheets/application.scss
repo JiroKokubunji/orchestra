@@ -16,8 +16,25 @@
 
 body {
   padding-top: 5rem;
+  background-color: $dark;
+  color: $white;
 }
 .starter-template {
   padding: 3rem 1.5rem;
   text-align: center;
+}
+
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .nav-link:hover,
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-link:focus,
+{
+  background-color: transparent;
+  color: $blue;
+  border-bottom: 1px solid $blue;
+}
+a:hover, a:focus
+{
+  background-color: transparent;
+  color: $blue;
 }

@@ -36,15 +36,17 @@ class ProjectDataController < ApplicationController
   # POST /project_data
   # POST /project_data.json
   def create
+    params.require(:project_datum).permit(:id, :project_id, :upload_file, :name)
     new_data = {}
     new_data['project_id'] = params[:project_id]
     new_data['name'] = "project data"
-    new_data['data'] = params[:project_datum][:data].read
+    new_data['data'] = params[:project_datum][:upload_file].read
     @project_datum = ProjectDatum.new(new_data)
     lines = new_data['data'].split("\r\n")
     header = lines[0].split(',')
     header.each do |h|
-      @project_datum.project_datum_columns.build(name: h, type: 'object')
+      pdc = @project_datum.project_datum_columns.build(name: h, type: 'object')
+      pdc.save
     end
 
     respond_to do |format|
@@ -90,7 +92,7 @@ class ProjectDataController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_datum_params
-      params.require(:project_datum).permit(:id, :project_id, :data, :name)
+      params.require(:project_datum).permit(:id, :project_id, :upload_file, :name)
       params.require(:process_datum_columns).permit(:id)
       params.require(:process_columns_request).permit(:task)
     end

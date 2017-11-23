@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
 <div class="row">
-  <div class="col col-lg-3">
+  <div class="col">
     <h1><%= @project_datum.name %></h1>
-  </div>
-  <div class="col col-lg-2">
     <%= link_to 'rename', '#', {'data-toggle' => "modal", 'data-target' => "#modal-window"} %>
   </div>
 </div>
 <div class="row">
-  <div class="col col-lg-12">
+  <div class="col">
   <%= form_with model: @project_datum, url: process_columns_path, method: 'post' do |form| %>
   <%= form.hidden_field :id %>
     <table class="table table-hover">
@@ -19,11 +19,12 @@
           <th>type</th>
           <th>active</th>
           <th>target</th>
+          <th>created at</th>
         </tr>
       </thead>
       <tbody>
       <% @project_datum.project_datum_columns.each do |c| %>
-        <tr>
+        <tr class="<%= 'deactive_column' if !c.active %>">
           <td><%= check_box_tag "project_datum_columns[id][]", c._id %></td>
           <td><%= c.name %></td>
           <td><%= c.type %></td>
@@ -34,6 +35,9 @@
           <td>
             <%= c.target %>
             <%= button_tag 'target', "data-project-datum-columns-id" => c._id, :class => "column_target_toggle" %>
+          </td>
+          <td>
+            <%= c.created_at %>
           </td>
         </tr>
       <% end %>

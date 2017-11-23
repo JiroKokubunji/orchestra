@@ -1,30 +1,33 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Select Preprocess Algorithms</h1>
-
-<%= form_with url: register_preprocess_algorithms_path do |form| %>
-<% @columns.each do |c| %>
-  <%= hidden_field_tag 'project_datum_columns[id][]', c %>
+<% if notice %>
+  <p id="notice"><%= notice %></p>
 <% end %>
+<h1>select preprocess algorithm</h1>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th></th>
-      <th>name</th>
-      <th>parameters</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @preprocess_algorithms.each do |preprocess_algorithm| %>
-      <tr>
-        <td><%= check_box_tag "preprocess_algorithms[id][]", preprocess_algorithm.id %></td>
-        <td><%= preprocess_algorithm.class_name %></td>
-        <td>T.B.Developed</td>
-      </tr>
+<div class="row">
+  <div class="col">
+    <%= form_with url: register_preprocess_algorithms_path do |form| %>
+    <% @columns.each do |c| %>
+      <%= hidden_field_tag 'project_datum_columns[id][]', c %>
     <% end %>
-  </tbody>
-</table>
-<%= form.submit "register" %>
-<% end %>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>name</th>
+          <th>parameters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @preprocess_algorithms.each do |preprocess_algorithm| %>
+          <tr>
+            <td><%= radio_button_tag "preprocess_algorithms[id]", preprocess_algorithm.id %></td>
+            <td><%= preprocess_algorithm.class_name %></td>
+            <td>T.B.Developed</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= form.submit "register", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

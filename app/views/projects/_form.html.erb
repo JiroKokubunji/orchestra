@@ -11,17 +11,12 @@
     </div>
   <% end %>
 
-  <div class="row justify-content-lg-center">
-    <div class="form-group col col-lg-2">
+  <div class="col col-lg-4 offset-lg-4">
+    <div class="form-group">
       <%= form.label :name, 'Project Name'  %>
-    </div>
-  </div>
-  <div class="row justify-content-lg-center">
-    <div class="form-group col col-lg-2">
       <%= form.text_field :name  %>
-    </div>
-    <div class="actions col col-lg-2">
-      <%= form.submit "create", :class => 'btn btn-primary' %>
-    </div>
+      <div class="actions">
+        <%= form.submit "create", :class => 'btn btn-primary' %>
+      </div>
   </div>
 <% end %>
