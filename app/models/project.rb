@@ -7,6 +7,6 @@ class Project
   field :file_name, type: String
   field :data, type: String
 
-  has_many :project_datum
-  # belongs_to :user
+  has_many :project_data
+  belongs_to :user
 end

@@ -6,5 +6,5 @@ class User
   field :name, type: String
   field :password, type: String
 
-  has_many :project
+  has_many :projects
 end
