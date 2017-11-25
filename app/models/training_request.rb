@@ -7,5 +7,6 @@ class TrainingRequest
 
   belongs_to :project_datum
   belongs_to :machine_learning_algorithm
-  has_many :classification_training_results
+  has_one :classification_training_result
+  has_one :regression_training_result
 end
