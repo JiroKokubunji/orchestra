@@ -15,7 +15,7 @@ class ProjectDataController < ApplicationController
   # GET /project_data/new
   def new
     @project = Project.find(params[:project_id])
-    @project_datum = @project.project_datum.build
+    @project_datum = @project.project_data.build
   end
 
   # GET /project_data/1/edit
@@ -23,10 +23,17 @@ class ProjectDataController < ApplicationController
   end
 
   def process_columns
+    params.require(:project_datum).permit(:id)
+    params.require(:project_datum_columns).permit(:id)
+    params.require(:process_columns_request).permit(:task)
     req = ProcessColumnsRequest.new
     req.project_datum_id = params[:project_datum][:id]
-    req.target_columns = params[:project_datum_columns][:id]
-    req.task = params[:task]
+    req.task = params[:process_columns_request][:task]
+    params[:project_datum_columns][:id].each do |id|
+      c = req.process_columns_request_target_columns.build
+      c.project_datum_column_id = id
+      c.save
+    end
     req.save
     MongodbMsgq.requestSync(req)
     @project_datum = ProjectDatum.find(params[:project_datum][:id])
@@ -36,18 +43,14 @@ class ProjectDataController < ApplicationController
   # POST /project_data
   # POST /project_data.json
   def create
-    params.require(:project_datum).permit(:id, :project_id, :upload_file, :name)
-    new_data = {}
-    new_data['project_id'] = params[:project_id]
-    new_data['name'] = "project data"
-    new_data['data'] = params[:project_datum][:upload_file].read
-    @project_datum = ProjectDatum.new(new_data)
-    lines = new_data['data'].split("\n")
-    header = lines[0].split(',')
-    header.each do |h|
-      pdc = @project_datum.project_datum_columns.build(name: h.strip, type: 'object')
-      pdc.save
-    end
+    params.require(:project_datum)
+          .permit(:id, :project_id, :upload_file, :name, :description)
+    @project_datum = ProjectDatum.new
+    @project_datum.project_id = params[:project_id]
+    @project_datum.name = params[:project_datum][:name]
+    @project_datum.description = params[:project_datum][:description]
+    @project_datum.data = params[:project_datum][:upload_file].read
+    @project_datum.create_datum_columns
 
     respond_to do |format|
       if @project_datum.save

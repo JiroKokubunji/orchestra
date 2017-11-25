@@ -1,3 +1,4 @@
+<!--
 <div class="row">
   <div class="col">
     <div id="new_project_file_upload_box" class="new_project_file_upload_box">
@@ -7,10 +8,29 @@
     </div>
   </div>
 </div>
+-->
 
-<div class="new_project_form">
-<%= form_with(model: [@project, @project_datum], local: true) do |form| %>
-<%= form.file_field :upload_file, :id => 'upload_file' %>
-<%= form.submit "Upload" %>
-<% end %>
+<div class="row">
+  <div class="col col-lg-4">
+    <div class="new_project_form">
+    <%= form_with(model: [@project, @project_datum], local: true) do |form| %>
+    <div class="form-group">
+      <div class="col">
+        <%= form.label 'name' %>
+        <%= form.text_field :name, value: "project data", class: 'form-control' %>
+      </div>
+      <div class="col">
+        <%= form.label 'description' %>
+        <%= form.text_field :description, class: 'form-control' %>
+      </div>
+      <div class="col">
+        <%= form.label 'file' %>
+        <%= form.file_field :upload_file, :id => 'upload_file' %>
+      </div>
+      <div class="col">
+        <%= form.submit "Upload" %>
+      </div>
+    <% end %>
+    </div>
+  </div>
 </div>

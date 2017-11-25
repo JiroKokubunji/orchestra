@@ -9,14 +9,19 @@
 </div>
 <div class="row">
   <div class="col">
-  <%= form_with model: @project_datum, url: process_columns_path, method: 'post' do |form| %>
+  <%= form_with model: @project_datum,
+                url: process_columns_path,
+                method: 'post',
+                id: 'process_columns_form' do |form| %>
   <%= form.hidden_field :id %>
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>-</th>
+          <th><%= check_box_tag 'check_all' %></th>
           <th>name</th>
-          <th>type</th>
+          <th>
+            type
+          </th>
           <th>active</th>
           <th>target</th>
           <th>created at</th>
@@ -27,7 +32,7 @@
         <tr class="<%= 'deactive_column' if !c.active %>
                   <%= 'target_column' if c.target %>
                   ">
-          <td><%= check_box_tag "project_datum_columns[id][]", c._id %></td>
+          <td><%= check_box_tag "project_datum_columns[id][]", c._id if !c.target %></td>
           <td><%= c.name %></td>
           <td><%= c.type %></td>
           <td>
@@ -54,10 +59,10 @@
 
 <div class="actions">
   <%= hidden_field_tag "process_columns_request[task]", "columns_type" %>
-  <%= submit_tag 'analyze columns', :class => 'btn btn-primary' %>
-  <%= button_tag 'preprocessing', :id => 'preprocessing', :class => 'btn btn-primary' %>
+  <%= submit_tag 'analyze column type', :id => 'analyze' %>
 </div>
 <% end %>
+<%= button_tag 'preprocessing', :id => 'preprocessing', :class => 'btn btn-primary' %>
 <%= link_to 'training',
               select_ml_algorithms_path(project_datum_id:  @project_datum.id),
               :id => 'training',
@@ -84,7 +89,6 @@
           <tr>
             <td><%= index %></td>
             <td><%= c.task %></td>
-            <td><%= c.target_columns %></td>
           </tr>
         <% end %>
       </tbody>

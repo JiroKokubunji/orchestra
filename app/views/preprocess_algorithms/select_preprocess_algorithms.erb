@@ -5,7 +5,7 @@
 
 <div class="row">
   <div class="col">
-    <%= form_with url: register_preprocess_algorithms_path do |form| %>
+    <%= form_with url: register_preprocess_algorithms_path, local: true  do |form| %>
     <% @columns.each do |c| %>
       <%= hidden_field_tag 'project_datum_columns[id][]', c %>
     <% end %>
