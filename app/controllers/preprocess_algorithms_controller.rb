@@ -8,14 +8,14 @@ class PreprocessAlgorithmsController < ApplicationController
 
   def register_preprocess_algorithms
     params.fetch(:project_datum_columns).permit(:id)
-    params.fetch(:preprocess_algorithms).permit(:id)
+    params.fetch(:preprocess_algorithm).permit(:id)
     project_datum_columns = ProjectDatumColumn.find(params[:project_datum_columns][:id][0])
     req = ProcessColumnsRequest.new
     req.project_datum_id = project_datum_columns.project_datum.id
     req.target_columns = params[:project_datum_columns][:id]
-    pa = PreprocessAlgorithm.find(params[:preprocess_algorithms][:id])
+    pa = PreprocessAlgorithm.find(params[:preprocess_algorithm][:id])
     req.task = pa.class_name
-    req.preprocess_algorithms_id = params[:preprocess_algorithms][:id]
+    req.preprocess_algorithm_id = params[:preprocess_algorithm][:id]
     req.save
     MongodbMsgq.requestSync(req)
     @project_datum = ProjectDatum.find(project_datum_columns.project_datum.id)

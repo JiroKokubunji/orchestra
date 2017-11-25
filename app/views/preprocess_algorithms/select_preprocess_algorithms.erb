@@ -20,7 +20,7 @@
       <tbody>
         <% @preprocess_algorithms.each do |preprocess_algorithm| %>
           <tr>
-            <td><%= radio_button_tag "preprocess_algorithms[id]", preprocess_algorithm.id %></td>
+            <td><%= radio_button_tag "preprocess_algorithm[id]", preprocess_algorithm.id %></td>
             <td><%= preprocess_algorithm.class_name %></td>
             <td>T.B.Developed</td>
           </tr>

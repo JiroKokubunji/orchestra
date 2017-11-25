@@ -64,6 +64,33 @@
               :class => 'btn btn-danger',
               method: 'get' %>
 
+<%= link_to 'models',
+              classification_training_results_path(project_datum_id:  @project_datum.id),
+              :id => 'models',
+              :class => 'btn btn-warning',
+              method: 'get' %>
+
+<div class="row">
+  <div class="col-lg-6 offset-col-lg-3">
+    <h2>Preprocess History</h2>
+    <table class="table table-hover">
+      <th>
+        <td>#</td>
+        <td>name</td>
+        <td>target columns</td>
+      </th>
+      <tbody>
+        <% @project_datum.process_columns_requests.each_with_index do |c, index| %>
+          <tr>
+            <td><%= index %></td>
+            <td><%= c.task %></td>
+            <td><%= c.target_columns %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

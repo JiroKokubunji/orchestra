@@ -11,4 +11,5 @@ class ProjectDatum
   has_many :machine_learning_algorithms
   has_many :preprocess_algorithms
   has_many :training_requests
+  has_many :process_columns_requests
 end
