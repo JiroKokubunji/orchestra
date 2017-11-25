@@ -42,10 +42,10 @@ class ProjectDataController < ApplicationController
     new_data['name'] = "project data"
     new_data['data'] = params[:project_datum][:upload_file].read
     @project_datum = ProjectDatum.new(new_data)
-    lines = new_data['data'].split("\r\n")
+    lines = new_data['data'].split("\n")
     header = lines[0].split(',')
     header.each do |h|
-      pdc = @project_datum.project_datum_columns.build(name: h, type: 'object')
+      pdc = @project_datum.project_datum_columns.build(name: h.strip, type: 'object')
       pdc.save
     end
 

@@ -11,7 +11,9 @@
       <thead>
         <tr>
           <th></th>
-          <th>name</th>
+          <th>category</th>
+          <th>module name</th>
+          <th>class name</th>
           <th>parameters</th>
         </tr>
       </thead>
@@ -19,6 +21,8 @@
         <% @ml_algorithms.each do |ml_algorithm| %>
           <tr>
             <td><%= check_box_tag "ml_algorithms[id][]", ml_algorithm.id %></td>
+            <td><%= ml_algorithm.category %></td>
+            <td><%= ml_algorithm.module_name %></td>
             <td><%= ml_algorithm.class_name %></td>
             <td>T.B.Developed</td>
           </tr>
