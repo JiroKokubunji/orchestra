@@ -11,14 +11,20 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Purpose</th>
+          <th>Updated At</th>
           <th>Created At</th>
+          <th>-</th>
         </tr>
       </thead>
       <tbody>
         <% @projects.each do |project| %>
-        <tr class="js-project-row" data-project-id="<%= project.id %>">
-          <td><%= project.name %></td>
-          <td><%= project.created_at %></td>
+        <tr>
+          <td><%= link_to project.name, project_path(project) %></td>
+          <td><%= project.purpose %></td>
+          <td><%= project.updated_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+          <td><%= project.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+          <td><%= link_to 'edit', edit_project_path(project) %></td>
         </tr>
         <% end %>
       </tbody>

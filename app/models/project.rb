@@ -3,9 +3,10 @@ class Project
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
 
+  validates :name, presence: true
+
   field :name, type: String
-  field :file_name, type: String
-  field :data, type: String
+  field :purpose, type: String
 
   has_many :project_data
   # belongs_to :user

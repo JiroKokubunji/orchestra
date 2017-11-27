@@ -4,14 +4,16 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all.order(created_at: :desc)
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
     # show also project data
-    @project_data = ProjectDatum.where(project_id: params[:id])
+    @project_data = ProjectDatum
+                    .where(project_id: params[:id])
+                    .order(created_at: :desc)
   end
 
   # GET /projects/new
@@ -71,6 +73,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params[:project].permit(:id, :name)
+      params[:project].permit(:id, :name, :purpose)
     end
 end

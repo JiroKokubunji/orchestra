@@ -3,6 +3,9 @@ class ProjectDatum
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
 
+  validates :name, presence: true
+  validates_presence_of :data, :message => 'file can\'t be blank'
+
   field :name, type: String
   field :description, type: String
   field :data, type: String
@@ -13,6 +16,7 @@ class ProjectDatum
   has_many :process_columns_requests
 
   def create_datum_columns
+    return if self.data == nil
     lines = self.data.split("\n")
     header = lines[0].split(',')
     header.each do |h|

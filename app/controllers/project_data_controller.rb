@@ -49,7 +49,8 @@ class ProjectDataController < ApplicationController
     @project_datum.project_id = params[:project_id]
     @project_datum.name = params[:project_datum][:name]
     @project_datum.description = params[:project_datum][:description]
-    @project_datum.data = params[:project_datum][:upload_file].read
+    @project_datum.data = params[:project_datum][:upload_file] ?
+                          params[:project_datum][:upload_file].read : nil
     @project_datum.create_datum_columns
 
     respond_to do |format|
@@ -57,6 +58,7 @@ class ProjectDataController < ApplicationController
         format.html { redirect_to @project_datum, notice: 'Project datum was successfully created.' }
         format.json { render :show, status: :created, location: @project_datum }
       else
+        @project = Project.find(@project_datum.project_id)
         format.html { render :new }
         format.json { render json: @project_datum.errors, status: :unprocessable_entity }
       end

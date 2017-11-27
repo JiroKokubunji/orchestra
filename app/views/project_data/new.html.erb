@@ -9,6 +9,17 @@
   </div>
 </div>
 -->
+<% if @project_datum.errors.any? %>
+  <div class="col col-lg-4 offset-lg-4 error-messages-container">
+    <p><%= pluralize(@project_datum.errors.count, "error") %> prohibited this project datum from being saved:</p>
+    <ul>
+    <% @project_datum.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 
 <div class="row">
   <div class="col col-lg-4">

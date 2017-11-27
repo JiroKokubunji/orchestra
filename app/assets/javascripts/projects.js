@@ -18,20 +18,6 @@ $(function () {
     $("form").submit();
     return false;
   });
-  // show
-  $(".js-project-datum-row").on('click', function (e) {
-    var project_datum_id = $(this).data('project-datum-id');
-    window.location.href = '/project_data/' + project_datum_id;
-    return false;
-  });
-  // index
-  $(".js-project-row").on('click', function (e) {
-    var project_id = $(this).data('project-id');
-    window.location.href = '/projects/' + project_id;
-    return false;
-  });
-
-
   // edit
   $(".edit_project").click(function () {
     var project_id = $(this).data("project_id");
