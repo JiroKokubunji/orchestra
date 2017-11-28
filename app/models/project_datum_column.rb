@@ -5,11 +5,19 @@ class ProjectDatumColumn
 
   field :name, type: String
   field :type, type: String
-  field :active, type: Boolean, default: true
+  field :count, type: Integer
+  field :mean, type: Float
+  field :std, type: Float
+  field :min, type: Float
+  field :quarter, type: Float
+  field :half, type: Float
+  field :three_quarters, type: Float
+  field :max, type: Float
   field :target, type: Boolean, default: false
+  field :active, type: Boolean, default: true
 
   belongs_to :project_datum
-  
+
   def set_target
     # set other coluns not target
     others = ProjectDatumColumn.where(project_datum_id: self.project_datum_id).all

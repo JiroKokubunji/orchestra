@@ -24,7 +24,16 @@
           </th>
           <th>active</th>
           <th>target</th>
+          <th>count</th>
+          <th>std</th>
+          <th>mean</th>
+          <th>min</th>
+          <th>25%</th>
+          <th>50%</th>
+          <th>75%</th>
+          <th>max</th>
           <th>created at</th>
+          <th>updated at</th>
         </tr>
       </thead>
       <tbody>
@@ -47,9 +56,16 @@
                               :class => "column_target_toggle" %>
             <% end %>
           </td>
-          <td>
-            <%= c.created_at %>
-          </td>
+          <td><%= c.count %></td>
+          <td><%= c.std.round(2) %></td>
+          <td><%= c.mean.round(2) %></td>
+          <td><%= c.min.round(2) %></td>
+          <td><%= c.quarter.round(2) %></td>
+          <td><%= c.half.round(2) %></td>
+          <td><%= c.three_quarters.round(2) %></td>
+          <td><%= c.max.round(2) %></td>
+          <td><%= c.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+          <td><%= c.updated_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
         </tr>
       <% end %>
       </tbody>
