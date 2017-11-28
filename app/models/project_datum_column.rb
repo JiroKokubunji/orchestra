@@ -5,14 +5,15 @@ class ProjectDatumColumn
 
   field :name, type: String
   field :type, type: String
-  field :count, type: Integer
-  field :mean, type: Float
-  field :std, type: Float
-  field :min, type: Float
-  field :quarter, type: Float
-  field :half, type: Float
-  field :three_quarters, type: Float
-  field :max, type: Float
+  field :missing, type: Integer, default: 0
+  field :count, type: Integer, default: 0
+  field :mean, type: Float, default: 0
+  field :std, type: Float, default: 0
+  field :min, type: Float, default: 0
+  field :quarter, type: Float, default: 0
+  field :half, type: Float, default: 0
+  field :three_quarters, type: Float, default: 0
+  field :max, type: Float, default: 0
   field :target, type: Boolean, default: false
   field :active, type: Boolean, default: true
 

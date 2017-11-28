@@ -24,6 +24,7 @@
           </th>
           <th>active</th>
           <th>target</th>
+          <th>missing</th>
           <th>count</th>
           <th>std</th>
           <th>mean</th>
@@ -56,6 +57,7 @@
                               :class => "column_target_toggle" %>
             <% end %>
           </td>
+          <td><%= c.missing %></td>
           <td><%= c.count %></td>
           <td><%= c.std.round(2) %></td>
           <td><%= c.mean.round(2) %></td>
@@ -78,6 +80,7 @@
   <%= submit_tag 'analyze column type', :id => 'analyze' %>
 </div>
 <% end %>
+<%= button_tag 'data cleaning', :id => 'data_cleaning', :class => 'btn btn-success' %>
 <%= button_tag 'preprocessing', :id => 'preprocessing', :class => 'btn btn-primary' %>
 <%= link_to 'training',
               select_ml_algorithms_path(project_datum_id:  @project_datum.id),
