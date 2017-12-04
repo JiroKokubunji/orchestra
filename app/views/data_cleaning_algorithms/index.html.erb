@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Data Cleaning Algorithms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @data_cleaning_algorithms.each do |data_cleaning_algorithm| %>
+      <tr>
+        <td><%= link_to 'Show', data_cleaning_algorithm %></td>
+        <td><%= link_to 'Edit', edit_data_cleaning_algorithm_path(data_cleaning_algorithm) %></td>
+        <td><%= link_to 'Destroy', data_cleaning_algorithm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Data Cleaning Algorithm', new_data_cleaning_algorithm_path %>

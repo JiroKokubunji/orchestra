@@ -1,0 +1,17 @@
+<%= form_with(model: data_cleaning, local: true) do |form| %>
+  <% if data_cleaning.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(data_cleaning.errors.count, "error") %> prohibited this data_cleaning from being saved:</h2>
+
+      <ul>
+      <% data_cleaning.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
