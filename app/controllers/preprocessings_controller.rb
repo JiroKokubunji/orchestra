@@ -1,0 +1,2 @@
+class PreprocessingsController < ApplicationController
+end

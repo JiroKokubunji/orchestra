@@ -1,0 +1,2 @@
+class DataCleaningsController < ApplicationController
+end
